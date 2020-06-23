@@ -286,20 +286,7 @@ class NeoGraph {
       .on("contextmenu", () => d3.event.preventDefault())
       // Cancel double click zoom
       .on("dblclick.zoom", null)
-      .call(
-        d3
-          .zoom()
-          .scaleExtent([0.1, 2])
-          .on("zoom", () => {
-            // Don't render text when the graph is too small
-            const scale = +d3.event.transform.k;
-            that.nodeGroup.label.attr(
-              "opacity",
-              scale > 0.5 ? 1 : scale < 0.4 ? 0 : (scale - 0.4) * 10
-            );
-            that.container.attr("transform", d3.event.transform);
-          })
-      );
+      .call(this.handler.zoom());
   }
 
   renderTick() {
@@ -376,6 +363,25 @@ class Handler {
       if (i.index !== d.index) return;
       this.classList.remove("pinned");
     });
+  }
+
+  zoom() {
+    const that = this
+    return d3.zoom()
+      .scaleExtent([0.1, 2])
+      .on("zoom", () => {
+        // Don't render text when the graph is too small
+        const scale = +d3.event.transform.k;
+        that.graph.nodeGroup.label.attr(
+          "opacity",
+          scale > 0.5 ? 1 : scale < 0.4 ? 0 : (scale - 0.4) * 10
+        );
+        that.graph.linkGroup.text.attr(
+          "opacity",
+          scale > 0.5 ? 1 : scale < 0.4 ? 0 : (scale - 0.4) * 10
+        );
+        that.graph.container.attr("transform", d3.event.transform);
+      });
   }
 
   drag(simulation) {
