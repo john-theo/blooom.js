@@ -1,0 +1,57 @@
+svg {
+  cursor: move;
+  user-select: none;
+}
+.node,
+.link {
+  cursor: default;
+  transition: opacity 0.3s ease-out;
+}
+.link .arrow {
+  fill: #ccc
+}
+.node .glow {
+  fill: none;
+  opacity: 0;
+  stroke: #6ac6ff;
+  stroke-width: 16px;
+}
+.link .glow {
+  cursor: default;
+  stroke-width: 12px;
+  stroke: #6ac6ff;
+  opacity: 0;
+}
+
+.node.pinned .glow,
+.node:hover .glow,
+.link:hover .glow {
+  opacity: 0.25;
+}
+
+.node.faded,
+.link.faded {
+  opacity: 0.2;
+}
+.node circle {
+  stroke-width: 2px;
+}
+svg text {
+  text-anchor: middle;
+}
+.node text {
+  fill: #fff;
+  font-size: 10px;
+  pointer-events: none;
+  transform: translateY(4px);
+}
+.link text {
+  fill: #000;
+  font-size: 8px;
+}
+* {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
