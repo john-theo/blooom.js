@@ -1,6 +1,8 @@
 // TODO:Dynamic graph update (e.g. double click a node to expand it).
 // TODO:Highlight nodes on init.
 
+const d3 = require("d3");
+
 class Config {
   nodeMouseEnter = null; // console.log;
   nodeMouseLeave = null; // console.log
@@ -24,7 +26,7 @@ class Config {
     "#fa5f86",
     "#ffab1a",
     "#fcda19",
-    "#797b80",    
+    "#797b80",
     "#c9d96f",
     "#47991f",
     "#70edee",
@@ -54,7 +56,7 @@ class Config {
 
     this.borderColors = this.colors.map((c) => d3.rgb(c).darker(0.5));
 
-    console.log(this);
+    // console.log(this);
   }
 
   // TODO: calculate primary label / primary label index / primary label text, once for all
@@ -85,7 +87,7 @@ function renameItemDict(original, keys) {
   );
 }
 
-class NeoGraph {
+class Blooom {
   constructor(selector, data, customConfig) {
     let sourceConfig;
     [data, sourceConfig] = this.transformData(data);
@@ -128,6 +130,8 @@ class NeoGraph {
 
   transformData(data) {
     let sourceConfig = {};
+    if (typeof data === "string") data = JSON.parse(data);
+
     // TODO: compatible with miserable
     if (data.results[0].data) [data, sourceConfig] = this.loadNeo4j(data);
 
@@ -174,6 +178,7 @@ class NeoGraph {
       .select(selector)
       .html("")
       .append("svg")
+      .attr("id", "blooom")
       .attr("width", "100%")
       .attr("height", "100%");
 
@@ -214,6 +219,7 @@ class NeoGraph {
       circle: nodes.append("circle").attr("class", "glow").attr("r", 25),
       glow: nodes
         .append("circle")
+        .attr("class", "circle")
         .attr("r", 25)
         .attr(
           "fill",
@@ -287,9 +293,9 @@ class NeoGraph {
 
     this.svg
       .on("contextmenu", () => d3.event.preventDefault())
-      // Cancel double click zoom
-      .on("dblclick.zoom", null)
       .call(this.handler.zoom());
+    // Cancel double click zoom
+    this.svg.on("dblclick.zoom", null);
   }
 
   renderTick() {
@@ -369,8 +375,9 @@ class Handler {
   }
 
   zoom() {
-    const that = this
-    return d3.zoom()
+    const that = this;
+    return d3
+      .zoom()
       .scaleExtent([0.1, 2])
       .on("zoom", () => {
         // Don't render text when the graph is too small
@@ -762,4 +769,4 @@ class Renderer {
   }
 }
 
-export default NeoGraph;
+module.exports = Blooom;

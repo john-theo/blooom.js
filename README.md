@@ -10,7 +10,40 @@ Graph visualization for human!
 
 ## Example
 
-example
+### Use `Blooom` as a nodejs package
+
+(See [test_server](./test_server))
+
+```html
+<div id="canvas"></div>
+
+<script>
+  import NeoGraph from "blooom";
+
+  new NeoGraph("#canvas", neoData, {
+    nodeLabelProperties: {
+      mutation: "position",
+      Molecular_Individual: "virus_id",
+    },
+  });
+</script>
+
+<style>
+  @import "blooom/css/style.min.css";
+</style>
+```
+
+### Use `Blooom` as a ES6 module
+
+
+
+## Dev preparation
+
+```bash
+sass --no-source-map --style compressed --watch css/style.scss:css/style.min.css
+
+npm run test
+```
 
 ## Credit
 

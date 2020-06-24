@@ -1,2 +1,2 @@
-const d3 = require("d3");
-
+const Blooom = require("./js/main");
+module.exports = Blooom;

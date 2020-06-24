@@ -4,7 +4,7 @@
   "description": "Graph visualization tool for human.",
   "main": "index.js",
   "scripts": {
-    "test": "vue-cli-service serve test-server/src/main.js"
+    "test": "vue-cli-service serve example/src/main.js"
   },
   "repository": {
     "type": "git",
