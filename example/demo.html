@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="css/style.min.css" />
+<link rel="stylesheet" href="../css/style.min.css" />
+<style>
+  html,
+  body,
+  #app,
+  #canvas {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
 <body>
   <div id="canvas"></div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@5.16.0/dist/d3.js"></script>
-<script src="data/neoData.js"></script>
-<script src="js/main.js"></script>
-<script>
-  // var graphData = JSON.parse(data);
-  var neoData = JSON.parse(json);
+<script src="../data/neo4j_resp.js"></script>
+<script type="module">
+  import Blooom from "../js/main.js";
 
-  var graph = new NeoGraph("#canvas", neoData, {
+  var json = JSON.parse(neoData);
+
+  var graph = new Blooom("#canvas", json, {
     nodeLabelProperties: {
       mutation: "position",
       Molecular_Individual: "virus_id",
