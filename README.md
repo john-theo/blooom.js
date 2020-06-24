@@ -10,12 +10,7 @@ Graph visualization for human!
 
 ## Example
 
-### Request
-
-```shell
-curl http://localhost:30031/?text=I spea Dutch!&to=zh-cn
-```
-
+example
 
 ## Credit
 
