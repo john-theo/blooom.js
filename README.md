@@ -12,15 +12,15 @@ Graph visualization for human!
 
 ### Use `Blooom` as a nodejs package
 
-(See [test_server](./test_server))
+(See [example](./example))
 
 ```html
 <div id="canvas"></div>
 
 <script>
-  import NeoGraph from "blooom";
+  import Blooom from "blooom";
 
-  new NeoGraph("#canvas", neoData, {
+  new Blooom("#canvas", neoData, {
     nodeLabelProperties: {
       mutation: "position",
       Molecular_Individual: "virus_id",
@@ -35,7 +35,7 @@ Graph visualization for human!
 
 ### Use `Blooom` as a ES6 module
 
-
+(Currently not supported)
 
 ## Dev preparation
 

@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import NeoGraph from "../../index";
+import Blooom from "blooom";
 import neoData from "../../data/neo4j_resp";
 
 export default {
   name: "Demo",
   mounted() {
-    new NeoGraph("#canvas", neoData, {
+    new Blooom("#canvas", neoData, {
       nodeLabelProperties: {
         mutation: "position",
         Molecular_Individual: "virus_id",
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style>
-@import "../../css/style.min.css";
+@import "blooom/css/style.min.css";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
