@@ -2,11 +2,13 @@
 
 ![](https://img.shields.io/badge/build-passing-success) ![](https://img.shields.io/badge/language-nodejs-orange.svg) ![](http://img.shields.io/badge/license-ISC-lightgrey)
 
-Graph visualization for human!
+Graph visualization for human! Visualize [Neo4j](https://neo4j.com/) [API response](https://neo4j.com/docs/http-api/current/introduction) and other graph data.
 
 ## Features
 
-- **Interactive**
+- **Informative**: directed, labelled relationships, customizable node label
+- **Interactive**: zoom, drag, focus on hover, and even fix on right click.
+- **Responsive**: auto-resize on window resizing.
 
 ## Example
 
