@@ -4,6 +4,8 @@
 
 Graph visualization for human! Visualize [Neo4j](https://neo4j.com/) [API response](https://neo4j.com/docs/http-api/current/introduction) and other graph data.
 
+![](./img/readme.png)
+
 ## Features
 
 - **Informative**: directed, labelled relationships, customizable node label
