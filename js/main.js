@@ -1,3 +1,6 @@
+// TODO:Dynamic graph update (e.g. double click a node to expand it).
+// TODO:Highlight nodes on init.
+
 class Config {
   nodeMouseEnter = null; // console.log;
   nodeMouseLeave = null; // console.log
@@ -21,7 +24,7 @@ class Config {
     "#fa5f86",
     "#ffab1a",
     "#fcda19",
-    "#797b80",
+    "#797b80",    
     "#c9d96f",
     "#47991f",
     "#70edee",
@@ -341,12 +344,12 @@ class Handler {
     });
   }
 
-  removeFocus(node, link) {
+  removeFocus() {
     // node.transition().ease(d3.easeCubicOut).duration(500).style("opacity", 1);
-    this.graph.nodes.each(function (i) {
+    this.graph.nodes.each(function () {
       this.classList.remove("faded");
     });
-    this.graph.links.each(function (i) {
+    this.graph.links.each(function () {
       this.classList.remove("faded");
     });
   }
@@ -758,3 +761,5 @@ class Renderer {
     });
   }
 }
+
+export default NeoGraph;
