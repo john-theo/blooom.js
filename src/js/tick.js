@@ -1,8 +1,4 @@
-const d3 = require("d3");
-
-import { Utils } from './utils.js';
-
-export class Renderer {
+class Renderer {
     utils = new Utils();
   
     renderLink(link, linkGlow, linkText) {

@@ -1,10 +1,10 @@
 {
   "name": "blooom",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Graph visualization tool for human.",
   "main": "index.js",
   "scripts": {
-    "test": "vue-cli-service serve example/src/main.js"
+    "test": "vue-cli-service serve example/vue.js"
   },
   "repository": {
     "type": "git",
@@ -21,37 +21,32 @@
     "url": "https://github.com/John-Theo/blooom.js/issues"
   },
   "homepage": "https://github.com/John-Theo/blooom.js#readme",
+  "files": [
+    "dist",
+    "img"
+  ],
   "dependencies": {
     "d3": "^5.16.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-inject-string": "^1.1.2",
+    "gulp-remove-empty-lines": "^0.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-strip-comments": "^2.5.2",
+    "gulp-terser": "^1.2.0",
+    "gulp-uglifycss": "^1.1.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "@vue/cli-plugin-babel": "^4.4.0",
-    "@vue/cli-plugin-eslint": "^4.4.0",
     "@vue/cli-service": "^4.4.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
     "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+  }
 }

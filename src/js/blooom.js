@@ -2,12 +2,6 @@
 // TODO: Highlight nodes on init.
 // TODO: add es6 support. Currently, comment out each `require`, and demo.html can function normally (when being served)
 
-const d3 = require("d3");
-
-import { Config } from "./config.js";
-import { Handler } from "./handler.js";
-import { renameItemDict, unique } from "./utils.js";
-import { Renderer } from "./tick.js";
 
 class Blooom {
   constructor(selector, data, customConfig) {
@@ -33,7 +27,7 @@ class Blooom {
     let nodes = [];
     let links = [];
 
-    json.results[0].data
+    json
       .map((i) => i.graph)
       .forEach((i) => {
         nodes = nodes.concat(i.nodes);
@@ -55,7 +49,7 @@ class Blooom {
     if (typeof data === "string") data = JSON.parse(data);
 
     // TODO: compatible with miserable
-    if (data.results[0].data) [data, sourceConfig] = this.loadNeo4j(data);
+    if (data[0].graph) [data, sourceConfig] = this.loadNeo4j(data);
 
     return [data, sourceConfig];
   }
@@ -230,12 +224,4 @@ class Blooom {
       this.nodes.attr("transform", (d) => `translate(${d.x}, ${d.y})`);
     });
   }
-}
-
-export default Blooom;
-
-try {
-  module.exports = Blooom;
-} catch {
-  console.warn("Use Blooom in nodejs environment is recommended!");
 }

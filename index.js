@@ -1,2 +1,3 @@
-const Blooom = require("./js/main");
+const Blooom = require("./dist/main");
+
 module.exports = Blooom;

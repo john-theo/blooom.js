@@ -1,6 +1,4 @@
-const d3 = require("d3");
-
-export class Config {
+class Config {
   nodeMouseEnter = null; // console.log;
   nodeMouseLeave = null; // console.log
   linkMouseEnter = null; // console.log

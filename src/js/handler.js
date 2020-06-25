@@ -1,6 +1,4 @@
-const d3 = require("d3");
-
-export class Handler {
+class Handler {
   constructor(graph) {
     this.graph = graph;
   }

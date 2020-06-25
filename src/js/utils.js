@@ -1,6 +1,6 @@
-export const unique = (array) => array.filter((v, i, a) => a.indexOf(v) === i);
+const unique = (array) => array.filter((v, i, a) => a.indexOf(v) === i);
 
-export function renameItemDict(original, keys) {
+function renameItemDict(original, keys) {
   return original.map(
     (i) =>
       Object.entries(keys).map(([k, v]) => {
@@ -12,7 +12,7 @@ export function renameItemDict(original, keys) {
   );
 }
 
-export class Utils {
+class Utils {
   rotation(source, target) {
     return (
       (Math.atan2(target.y - source.y, target.x - source.x) * 180) / Math.PI
