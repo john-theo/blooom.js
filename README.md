@@ -2,7 +2,9 @@
 
 ![](https://img.shields.io/badge/build-passing-success) ![](https://img.shields.io/badge/language-nodejs-orange.svg) ![](http://img.shields.io/badge/license-ISC-lightgrey)
 
-Graph visualization for human! Visualize [Neo4j](https://neo4j.com/) [API response](https://neo4j.com/docs/http-api/current/introduction) and other graph data.
+Graph visualization for human! 
+
+Visualize [Neo4j](https://neo4j.com/) [API response](https://neo4j.com/docs/http-api/current/introduction) and other graph data.
 
 ![](./img/readme.png)
 
@@ -16,13 +18,12 @@ Graph visualization for human! Visualize [Neo4j](https://neo4j.com/) [API respon
 
 ### Use `Blooom` as a nodejs package
 
-(See [example](./example))
-
 ```html
 <div id="canvas"></div>
 
 <script>
   import Blooom from "blooom";
+  import 'blooom/dist/main.min.css'
 
   new Blooom("#canvas", neoData, {
     nodeLabelProperties: {
@@ -31,22 +32,33 @@ Graph visualization for human! Visualize [Neo4j](https://neo4j.com/) [API respon
     },
   });
 </script>
-
-<style>
-  @import "blooom/css/style.min.css";
-</style>
 ```
 
 ### Use `Blooom` as a ES6 module
 
-(Currently not supported)
+See `example/browser.html` for a simple demo.
+
+```html
+<link rel="stylesheet" href="blooom/dist/main.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/d3@5.16.0"></script>
+<script src="blooom/dist/main.es.browser.min.js"></script>
+
+<div id="canvas"></div>
+
+<script>
+  new Blooom("#canvas", neoData, {
+    nodeLabelProperties: {
+      mutation: "position",
+      Molecular_Individual: "virus_id",
+    },
+  });
+</script>
+```
 
 ## Dev preparation
 
 ```bash
-sass --no-source-map --style compressed --watch css/style.scss:css/style.min.css
-
-npm run test
+gulp
 ```
 
 ## Credit
