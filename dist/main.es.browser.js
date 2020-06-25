@@ -173,11 +173,11 @@ class Blooom {
     this.links
       .on("mouseenter", function (d) {
         that.handler.focusLink(d);
-        that.config.linkMouseEnter && that.config.linkMouseEnter(d);
+        that.config.linkMouseEnter && that.config.linkMouseEnter(d, that);
       })
       .on("mouseleave", function (d) {
         that.handler.removeFocus(that.nodes, that.links);
-        that.config.linkMouseLeave && that.config.linkMouseLeave(d);
+        that.config.linkMouseLeave && that.config.linkMouseLeave(d, that);
       });
 
     this.nodes
@@ -188,11 +188,11 @@ class Blooom {
       })
       .on("mouseenter", function (d) {
         that.handler.focusNode(d);
-        that.config.nodeMouseEnter && that.config.nodeMouseEnter(d);
+        that.config.nodeMouseEnter && that.config.nodeMouseEnter(d, that);
       })
       .on("mouseleave", function (d) {
         that.handler.removeFocus(that.nodes, that.links);
-        that.config.nodeMouseLeave && that.config.nodeMouseLeave(d);
+        that.config.nodeMouseLeave && that.config.nodeMouseLeave(d, that);
       });
 
     this.svg

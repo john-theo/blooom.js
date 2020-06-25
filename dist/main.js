@@ -192,10 +192,10 @@ var Blooom = /*#__PURE__*/function () {
       });
       this.links.on("mouseenter", function (d) {
         that.handler.focusLink(d);
-        that.config.linkMouseEnter && that.config.linkMouseEnter(d);
+        that.config.linkMouseEnter && that.config.linkMouseEnter(d, that);
       }).on("mouseleave", function (d) {
         that.handler.removeFocus(that.nodes, that.links);
-        that.config.linkMouseLeave && that.config.linkMouseLeave(d);
+        that.config.linkMouseLeave && that.config.linkMouseLeave(d, that);
       });
       this.nodes.on("contextmenu", function (d) {
         that.handler.pinNode(that.nodes, d);
@@ -203,10 +203,10 @@ var Blooom = /*#__PURE__*/function () {
         d.fy = d.y;
       }).on("mouseenter", function (d) {
         that.handler.focusNode(d);
-        that.config.nodeMouseEnter && that.config.nodeMouseEnter(d);
+        that.config.nodeMouseEnter && that.config.nodeMouseEnter(d, that);
       }).on("mouseleave", function (d) {
         that.handler.removeFocus(that.nodes, that.links);
-        that.config.nodeMouseLeave && that.config.nodeMouseLeave(d);
+        that.config.nodeMouseLeave && that.config.nodeMouseLeave(d, that);
       });
       this.svg.on("contextmenu", function () {
         return d3.event.preventDefault();
