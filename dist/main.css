@@ -1,37 +1,37 @@
-#blooom {
+.blooom {
   cursor: move;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   font-family: Helvetica, Arial, sans-serif; }
-  #blooom .node,
-  #blooom .link {
+  .blooom .node,
+  .blooom .link {
     cursor: default;
     transition: opacity 0.3s ease-out; }
-    #blooom .node text,
-    #blooom .link text {
+    .blooom .node text,
+    .blooom .link text {
       text-anchor: middle; }
-    #blooom .node.pinned .glow,
-    #blooom .node:hover .glow,
-    #blooom .link.pinned .glow,
-    #blooom .link:hover .glow {
+    .blooom .node.pinned .glow,
+    .blooom .node:hover .glow,
+    .blooom .link.pinned .glow,
+    .blooom .link:hover .glow {
       opacity: 0.25; }
-    #blooom .node.faded,
-    #blooom .link.faded {
+    .blooom .node.faded,
+    .blooom .link.faded {
       opacity: 0.2; }
-  #blooom .link .arrow {
+  .blooom .link .arrow {
     fill: #ccc; }
-  #blooom .link text {
+  .blooom .link text {
     fill: #000;
     font-size: 8px; }
-  #blooom .node .circle {
+  .blooom .node .circle {
     stroke-width: 2px; }
-  #blooom .node text {
+  .blooom .node text {
     fill: #fff;
     font-size: 10px;
     transform: translateY(4px); }
-  #blooom .glow {
+  .blooom .glow {
     cursor: default;
     fill: none;
     opacity: 0;

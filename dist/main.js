@@ -134,7 +134,7 @@ var Blooom = /*#__PURE__*/function () {
   }, {
     key: "initCanvas",
     value: function initCanvas(selector) {
-      this.svg = d3.select(selector).html("").append("svg").attr("id", "blooom").attr("width", "100%").attr("height", "100%");
+      this.svg = d3.select(selector).html("").append("svg").attr("class", "blooom").attr("width", "100%").attr("height", "100%");
       this.width = this.svg.node().clientWidth;
       this.height = this.svg.node().clientHeight;
       this.svg.attr("viewBox", [0, 0, this.width, this.height]);

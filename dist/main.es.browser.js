@@ -88,7 +88,7 @@ class Blooom {
       .select(selector)
       .html("")
       .append("svg")
-      .attr("id", "blooom")
+      .attr("class", "blooom")
       .attr("width", "100%")
       .attr("height", "100%");
 
