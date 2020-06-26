@@ -157,6 +157,11 @@ var Blooom = /*#__PURE__*/function () {
       return nodes;
     }
   }, {
+    key: "clear",
+    value: function clear() {
+      this.svg.remove();
+    }
+  }, {
     key: "initLinks",
     value: function initLinks(dataLinks) {
       var _this3 = this;

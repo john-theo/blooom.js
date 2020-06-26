@@ -146,6 +146,10 @@ class Blooom {
     return nodes;
   }
 
+  clear() {
+    this.svg.remove();
+  }
+
   initLinks(dataLinks) {
     var links = this.container
       .selectAll(".link")
