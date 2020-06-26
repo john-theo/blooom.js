@@ -1,5 +1,4 @@
 
-
 class Blooom {
   constructor(selector, data, customConfig) {
     let sourceConfig;
@@ -45,9 +44,12 @@ class Blooom {
     let sourceConfig = {};
     if (typeof data === "string") data = JSON.parse(data);
 
-    if (data[0].graph) [data, sourceConfig] = this.loadNeo4j(data);
-
-    return [data, sourceConfig];
+    return (data[0] && data[0].graph)
+      ? this.loadNeo4j(data)
+      : (data.results && data.results[0])
+      ? this.loadNeo4j(data.results[0].data)
+      : null
+    ;
   }
 
   washData(data) {
@@ -76,9 +78,9 @@ class Blooom {
       })
       .filter((x) => x);
 
-    this.existedGroups = Object.assign(
+    this.existedGroups = existedGroups.length ? Object.assign(
       ...unique(existedGroups.flat()).map((v, i) => ({ [v]: i }))
-    );
+    ) : [];
 
     return [dataNodes, dataLinks];
   }

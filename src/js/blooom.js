@@ -1,7 +1,5 @@
 // TODO: Dynamic graph update (e.g. double click a node to expand it).
 // TODO: Highlight nodes on init.
-// TODO: add es6 support. Currently, comment out each `require`, and demo.html can function normally (when being served)
-
 
 class Blooom {
   constructor(selector, data, customConfig) {
@@ -49,9 +47,12 @@ class Blooom {
     if (typeof data === "string") data = JSON.parse(data);
 
     // TODO: compatible with miserable
-    if (data[0].graph) [data, sourceConfig] = this.loadNeo4j(data);
-
-    return [data, sourceConfig];
+    return (data[0] && data[0].graph)
+      ? this.loadNeo4j(data)
+      : (data.results && data.results[0])
+      ? this.loadNeo4j(data.results[0].data)
+      : null
+    ;
   }
 
   washData(data) {
@@ -81,10 +82,9 @@ class Blooom {
       })
       .filter((x) => x);
 
-    this.existedGroups = Object.assign(
+    this.existedGroups = existedGroups.length ? Object.assign(
       ...unique(existedGroups.flat()).map((v, i) => ({ [v]: i }))
-    );
-    // console.log(dataNodes[1].__proto__.id, dataNodes[1].id)
+    ) : [];
 
     return [dataNodes, dataLinks];
   }

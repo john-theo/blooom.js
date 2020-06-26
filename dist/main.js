@@ -88,17 +88,7 @@ var Blooom = /*#__PURE__*/function () {
     value: function transformData(data) {
       var sourceConfig = {};
       if (typeof data === "string") data = JSON.parse(data);
-
-      if (data[0].graph) {
-        var _this$loadNeo4j = this.loadNeo4j(data);
-
-        var _this$loadNeo4j2 = _slicedToArray(_this$loadNeo4j, 2);
-
-        data = _this$loadNeo4j2[0];
-        sourceConfig = _this$loadNeo4j2[1];
-      }
-
-      return [data, sourceConfig];
+      return data[0] && data[0].graph ? this.loadNeo4j(data) : data.results && data.results[0] ? this.loadNeo4j(data.results[0].data) : null;
     }
   }, {
     key: "washData",
@@ -126,9 +116,9 @@ var Blooom = /*#__PURE__*/function () {
       }).filter(function (x) {
         return x;
       });
-      this.existedGroups = Object.assign.apply(Object, _toConsumableArray(unique(existedGroups.flat()).map(function (v, i) {
+      this.existedGroups = existedGroups.length ? Object.assign.apply(Object, _toConsumableArray(unique(existedGroups.flat()).map(function (v, i) {
         return _defineProperty({}, v, i);
-      })));
+      }))) : [];
       return [dataNodes, dataLinks];
     }
   }, {
