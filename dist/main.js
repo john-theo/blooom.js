@@ -96,13 +96,17 @@ var Blooom = /*#__PURE__*/function () {
       var _this = this;
 
       var linkedNodes = [];
+      var existedLinks = [];
       var dataLinks = renameItemDict(data.links, {
         source: this.config.linkSourceKey,
         target: this.config.linkTargetKey
       }).map(function (d) {
+        var id = "".concat(d.source, "-").concat(d.target);
+        if (existedLinks.indexOf(id) >= 0) return null;
         linkedNodes.push(d.source), linkedNodes.push(d.target);
+        existedLinks.push(id);
         return Object.create(d);
-      });
+      }).filter(Boolean);
       linkedNodes = unique(linkedNodes);
       var existedNodes = [];
       var existedGroups = [];
@@ -113,9 +117,7 @@ var Blooom = /*#__PURE__*/function () {
         existedNodes.push(d.id);
         existedGroups.push(d[_this.config.nodeGroupsKey]);
         return Object.create(d);
-      }).filter(function (x) {
-        return x;
-      });
+      }).filter(Boolean);
       this.existedGroups = existedGroups.length ? Object.assign.apply(Object, _toConsumableArray(unique(existedGroups.flat()).map(function (v, i) {
         return _defineProperty({}, v, i);
       }))) : [];
@@ -295,9 +297,20 @@ var Config = /*#__PURE__*/function () {
       return this.graph.existedGroups[this.getNodeLabel(labels)];
     }
   }, {
+    key: "_isFunction",
+    value: function _isFunction(func) {
+      return func && {}.toString.call(func) === '[object Function]';
+    }
+  }, {
     key: "getNodeText",
     value: function getNodeText(d) {
-      return d.properties[this.nodeLabelProperties[this.getNodeLabel(d.labels)]];
+      var propertyKey = this.nodeLabelProperties[this.getNodeLabel(d.labels)];
+
+      if (this._isFunction(propertyKey)) {
+        return propertyKey(d);
+      } else {
+        return d.properties[propertyKey];
+      }
     }
   }]);
 

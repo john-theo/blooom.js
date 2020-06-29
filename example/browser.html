@@ -24,7 +24,9 @@
     new Blooom("#canvas", neoData, {
       nodeLabelProperties: {
         mutation: "position",
-        Molecular_Individual: "virus_id",
+        Molecular_Individual: function (d) {
+          return d.properties["virus_id"]
+        },
       },
     });
   </script>

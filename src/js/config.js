@@ -63,7 +63,16 @@ class Config {
     return this.graph.existedGroups[this.getNodeLabel(labels)];
   }
 
+  _isFunction(func) {
+    return func && {}.toString.call(func) === '[object Function]'
+  }
+
   getNodeText(d) {
-    return d.properties[this.nodeLabelProperties[this.getNodeLabel(d.labels)]];
+    const propertyKey = this.nodeLabelProperties[this.getNodeLabel(d.labels)];
+    if (this._isFunction(propertyKey)) {
+      return propertyKey(d);
+    } else {
+      return d.properties[propertyKey];
+    }
   }
 }
