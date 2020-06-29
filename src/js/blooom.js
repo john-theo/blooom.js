@@ -47,23 +47,28 @@ class Blooom {
     if (typeof data === "string") data = JSON.parse(data);
 
     // TODO: compatible with miserable
-    return (data[0] && data[0].graph)
+    return data[0] && data[0].graph
       ? this.loadNeo4j(data)
-      : (data.results && data.results[0])
+      : data.results && data.results[0]
       ? this.loadNeo4j(data.results[0].data)
-      : null
-    ;
+      : null;
   }
 
   washData(data) {
     let linkedNodes = [];
+    let existedLinks = [];
     const dataLinks = renameItemDict(data.links, {
       source: this.config.linkSourceKey,
       target: this.config.linkTargetKey,
-    }).map((d) => {
-      linkedNodes.push(d.source), linkedNodes.push(d.target);
-      return Object.create(d);
-    });
+    })
+      .map((d) => {
+        let id = `${d.source}-${d.target}`;
+        if (existedLinks.indexOf(id) >= 0) return null;
+        linkedNodes.push(d.source), linkedNodes.push(d.target);
+        existedLinks.push(id);
+        return Object.create(d);
+      })
+      .filter(Boolean);
 
     linkedNodes = unique(linkedNodes);
 
@@ -80,11 +85,13 @@ class Blooom {
         existedGroups.push(d[this.config.nodeGroupsKey]);
         return Object.create(d);
       })
-      .filter((x) => x);
+      .filter(Boolean);
 
-    this.existedGroups = existedGroups.length ? Object.assign(
-      ...unique(existedGroups.flat()).map((v, i) => ({ [v]: i }))
-    ) : [];
+    this.existedGroups = existedGroups.length
+      ? Object.assign(
+          ...unique(existedGroups.flat()).map((v, i) => ({ [v]: i }))
+        )
+      : [];
 
     return [dataNodes, dataLinks];
   }
@@ -117,7 +124,13 @@ class Blooom {
         )
         .force("charge", d3.forceManyBody().strength(-800))
         .force("center", d3.forceCenter(this.width / 2, this.height / 2))
-        .force("collide", d3.forceCollide().radius(40).iterations(2))
+        .force(
+          "collide",
+          d3
+            .forceCollide()
+            .radius(40)
+            .iterations(2)
+        )
       // .on("end", console.log("loaded"))
     );
   }
@@ -132,7 +145,10 @@ class Blooom {
       .call(this.handler.drag(this.simulation));
 
     this.nodeGroup = {
-      circle: nodes.append("circle").attr("class", "glow").attr("r", 25),
+      circle: nodes
+        .append("circle")
+        .attr("class", "glow")
+        .attr("r", 25),
       glow: nodes
         .append("circle")
         .attr("class", "circle")
@@ -181,17 +197,17 @@ class Blooom {
     const that = this;
 
     this.nodesLinked = [];
-    dataLinks.forEach(function (d) {
+    dataLinks.forEach(function(d) {
       that.nodesLinked[d.source.index + "-" + d.target.index] = true;
       that.nodesLinked[d.target.index + "-" + d.source.index] = true;
     });
 
     this.links
-      .on("mouseenter", function (d) {
+      .on("mouseenter", function(d) {
         that.handler.focusLink(d);
         that.config.linkMouseEnter && that.config.linkMouseEnter(d, that);
       })
-      .on("mouseleave", function (d) {
+      .on("mouseleave", function(d) {
         that.handler.removeFocus(that.nodes, that.links);
         that.config.linkMouseLeave && that.config.linkMouseLeave(d, that);
       });
@@ -202,11 +218,11 @@ class Blooom {
         d.fx = d.x;
         d.fy = d.y;
       })
-      .on("mouseenter", function (d) {
+      .on("mouseenter", function(d) {
         that.handler.focusNode(d);
         that.config.nodeMouseEnter && that.config.nodeMouseEnter(d, that);
       })
-      .on("mouseleave", function (d) {
+      .on("mouseleave", function(d) {
         that.handler.removeFocus(that.nodes, that.links);
         that.config.nodeMouseLeave && that.config.nodeMouseLeave(d, that);
       });
