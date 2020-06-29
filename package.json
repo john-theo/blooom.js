@@ -1,6 +1,6 @@
 {
   "name": "blooom",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "description": "Graph visualization tool for human.",
   "main": "index.js",
   "scripts": {
