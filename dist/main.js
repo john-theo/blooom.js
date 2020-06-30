@@ -38,6 +38,7 @@ var Blooom = /*#__PURE__*/function () {
   function Blooom(selector, data, customConfig) {
     _classCallCheck(this, Blooom);
 
+    if (!data || !data.length) throw "ValueError: invalid `data`";
     var sourceConfig;
 
     var _this$transformData = this.transformData(data);

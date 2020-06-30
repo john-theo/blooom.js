@@ -3,6 +3,7 @@
 
 class Blooom {
   constructor(selector, data, customConfig) {
+    if (!data || !data.length) throw "ValueError: invalid `data`"
     let sourceConfig;
     [data, sourceConfig] = this.transformData(data);
 
