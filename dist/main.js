@@ -136,9 +136,9 @@ var Blooom = /*#__PURE__*/function () {
   }, {
     key: "initSimulation",
     value: function initSimulation(dataNodes, dataLinks) {
-      return d3.forceSimulation(dataNodes).velocityDecay(0.1).force("link", d3.forceLink(dataLinks).id(function (d) {
+      return d3.forceSimulation(dataNodes).velocityDecay(0.1).alphaDecay(0.05).force("link", d3.forceLink(dataLinks).id(function (d) {
         return d.id;
-      })).force("charge", d3.forceManyBody().strength(-800)).force("center", d3.forceCenter(this.width / 2, this.height / 2)).force("collide", d3.forceCollide().radius(40).iterations(2));
+      })).force("charge", d3.forceManyBody().strength(-800)).force("center", d3.forceCenter(this.width / 2, this.height / 2)).force("collide", d3.forceCollide().radius(30).iterations(2));
     }
   }, {
     key: "initNodes",

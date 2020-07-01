@@ -119,6 +119,7 @@ class Blooom {
         .forceSimulation(dataNodes)
         // TODO: cut the wobble
         .velocityDecay(0.1)
+        .alphaDecay(0.05)
         .force(
           "link",
           d3.forceLink(dataLinks).id((d) => d.id)
@@ -129,7 +130,7 @@ class Blooom {
           "collide",
           d3
             .forceCollide()
-            .radius(40)
+            .radius(30)
             .iterations(2)
         )
       // .on("end", console.log("loaded"))

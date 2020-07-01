@@ -114,6 +114,7 @@ class Blooom {
       d3
         .forceSimulation(dataNodes)
         .velocityDecay(0.1)
+        .alphaDecay(0.05)
         .force(
           "link",
           d3.forceLink(dataLinks).id((d) => d.id)
@@ -124,7 +125,7 @@ class Blooom {
           "collide",
           d3
             .forceCollide()
-            .radius(40)
+            .radius(30)
             .iterations(2)
         )
     );
